@@ -112,7 +112,43 @@
     .hl-blue-meta > .ln.i6    { padding-left: calc(12ch - 11.5ch); }
     .hl-blue-meta > .ln.i7    { padding-left: calc(14ch - 11.5ch); }
 
-    /* ── Control panel ── */
+    /* ── Arrow annotation ── */
+    .annotate {
+      position: relative;
+      display: inline;
+    }
+    .annotate::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 60%;
+      margin-bottom: 2px;
+      width: 40px;
+      height: 40px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3Cmarker id='h' markerWidth='6' markerHeight='6' refX='3' refY='3' orient='auto'%3E%3Cpath d='M0,0 L6,3 L0,6 Z' fill='%23e8000d'/%3E%3C/marker%3E%3C/defs%3E%3Cline x1='22' y1='2' x2='4' y2='22' stroke='%23e8000d' stroke-width='2.2' marker-end='url(%23h)'/%3E%3C/svg%3E") no-repeat center/contain;
+      pointer-events: none;
+    }
+    body.hide-arrows .annotate::after {
+      display: none;
+    }
+
+    #toggle-arrows {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+      padding: 6px 14px;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 11px;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color: #333;
+      width: fit-content;
+    }
+    #toggle-arrows:hover {
+      background: #f0f0f0;
+    }
+
     #controls {
       margin-top: 28px;
       padding: 16px 20px;
@@ -156,18 +192,36 @@
 </head>
 <body>
 
+<div style="
+  font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #e8e8e8;
+">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+    <span style="font-size:28px;"><img src="https://www.bbc.com/favicon.ico" style="width:28px;height:28px;vertical-align:middle;border-radius:4px;" alt="BBC News"></span>
+    <h1 style="font-size:22px; font-weight:700; color:#1a1a1a; letter-spacing:-0.3px; margin:0;">
+      BBC News — Headline Card DOM Structure
+    </h1>
+  </div>
+  <p style="font-size:12.5px; color:#666; margin:0 0 0 40px; line-height:1.5;">
+    Annotated HTML structure of a BBC News article card, mapped for web scraping.<br>
+    Shaded regions highlight key DOM elements · Red arrows indicate target <code style="background:#f4f4f4; padding:1px 5px; border-radius:3px; font-size:11.5px; color:#c7254e;">data-testid</code> and attribute selectors.
+  </p>
+</div>
+
 <div class="code-block">
-<span class="ln i0"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-225578b-0 ezQaGx"</span> <span class="a">data-indexcard</span><span class="p">=</span><span class="v">"true"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"dundee-card"</span><span class="p">&gt;</span></span>
+<span class="ln i0"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-225578b-0 ezQaGx"</span> <span class="a">data-indexcard</span><span class="p">=</span><span class="v">"true"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"<span class="annotate">dundee-card</span>"</span><span class="p">&gt;</span></span>
 <span class="ln i1"><span class="p">&lt;</span><span class="t">div</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"anchor-inner-wrapper"</span><span class="p">&gt;</span></span>
 <div class="hl hl-yellow">
-<span class="ln i2"><span class="p">&lt;</span><span class="t">a</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-8a623a54-0 huZCWi"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"internal-link"</span> <span class="a">href</span><span class="p">=</span><span class="v">"/news/articles/c809m7g29r7o"</span><span class="p">&gt;</span></span>
+<span class="ln i2"><span class="p">&lt;</span><span class="t">a</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-8a623a54-0 huZCWi"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"internal-link"</span> <span class="a"><span class="annotate">href</span></span><span class="p">=</span><span class="v">"/news/articles/c809m7g29r7o"</span><span class="p">&gt;</span></span>
 <span class="ln i3"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-329e5f2b-1 gnGpEW"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"dundee-article"</span><span class="p">&gt;</span></span>
 <div class="hl hl-orange">
 <span class="ln i4"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-329e5f2b-3 kkqTyl"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-image-wrapper"</span><span class="p">&gt;</span></span>
 <span class="ln i5"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-329e5f2b-4 eASWcB"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-media"</span><span class="p">&gt;</span></span>
 <span class="ln i6"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-79783b34-1 ihBaan"</span><span class="p">&gt;</span></span>
-<div class="hl hl-img"><span class="ln i7"><span class="p">&lt;</span><span class="t">img</span> <span class="a">aria-label</span><span class="p">=</span><span class="v">"image unavailable"</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-79783b34-0 izIRVC hide-when-no-script"</span> <span class="a">src</span><span class="p">=</span><span class="v">"https://static.files.bbci.co.uk/bbcdotcom/web/20260513-11…"</span><span class="p">&gt;</span></span></div>
-<div class="hl hl-img"><span class="ln i7"><span class="p">&lt;</span><span class="t">img</span> <span class="a">alt</span><span class="p">=</span><span class="v">"A worker fills a red car with fuel with a green pump labelled petrol on 23 May, 2026 in New Delhi, India."</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-79783b34-0 clLFUe"</span><span class="p">&gt;</span></span></div>
+<div class="hl hl-img"><span class="ln i7"><span class="p">&lt;</span><span class="t">img</span> <span class="a">aria-label</span><span class="p">=</span><span class="v">"image unavailable"</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-79783b34-0 izIRVC hide-when-no-script"</span> <span class="a"><span class="annotate">src</span></span><span class="p">=</span><span class="v">"https://static.files.bbci.co.uk/bbcdotcom/web/20260513-11…"</span><span class="p">&gt;</span></span></div>
+<div class="hl hl-img"><span class="ln i7"><span class="p">&lt;</span><span class="t">img</span> <span class="a"><span class="annotate">alt</span></span><span class="p">=</span><span class="v">"A worker fills a red car with fuel with a green pump labelled petrol on 23 May, 2026 in New Delhi, India."</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-79783b34-0 clLFUe"</span><span class="p">&gt;</span></span></div>
 <span class="ln i6"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
 <span class="ln i5"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
 <span class="ln i4"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
@@ -177,27 +231,27 @@
 <span class="ln i5"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-feaf8701-1 dzYnRP"</span><span class="p">&gt;</span></span>
 <span class="ln i6"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-feaf8701-0 ktNWyK"</span><span class="p">&gt;</span></span>
 <div class="hl hl-blue hl-blue-headline">
-<span class="ln i7"><span class="p">&lt;</span><span class="t">h2</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-feaf8701-3 eQumHa"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-headline"</span><span class="p">&gt;</span></span>
+<span class="ln i7"><span class="p">&lt;</span><span class="t">h2</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-feaf8701-3 eQumHa"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"<span class="annotate">card-headline</span>"</span><span class="p">&gt;</span></span>
 <span class="ln i8"><span class="tx">Oil prices slide on hopes of US–Iran peace deal</span></span>
 <span class="ln i7"><span class="p">&lt;/</span><span class="t">h2</span><span class="p">&gt;</span></span>
 </div>
 <span class="ln i6"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
 <span class="ln i5"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
 <div class="hl hl-blue hl-blue-desc">
-<span class="ln i5"><span class="p">&lt;</span><span class="t">p</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-329e5f2b-0 ffnHHm"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-description"</span><span class="p">&gt;</span></span>
+<span class="ln i5"><span class="p">&lt;</span><span class="t">p</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-329e5f2b-0 ffnHHm"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"<span class="annotate">card-description</span>"</span><span class="p">&gt;</span></span>
 <span class="ln i6"><span class="tx">Trump said on Saturday that an agreement would include the reopening of the Strait of Hormuz, without giving further details.</span></span>
 <span class="ln i5"><span class="p">&lt;/</span><span class="t">p</span><span class="p">&gt;</span></span>
 </div>
 <span class="ln i5"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-0 jkvOKk"</span><span class="p">&gt;</span></span>
 <div class="hl hl-blue hl-blue-meta">
-<span class="ln i6"><span class="p">&lt;</span><span class="t">span</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-1 bZuSaP"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-metadata-lastupdated"</span><span class="p">&gt;</span></span>
+<span class="ln i6"><span class="p">&lt;</span><span class="t">span</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-1 bZuSaP"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"<span class="annotate">card-metadata-lastupdated</span>"</span><span class="p">&gt;</span></span>
 <span class="ln i7"><span class="tx">3 hrs ago</span></span>
 <span class="ln i6"><span class="p">&lt;/</span><span class="t">span</span><span class="p">&gt;</span></span>
 </div>
 <span class="ln i6"><span class="p">&lt;</span><span class="t">div</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-3 hCbeEG"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-metadata-separator"</span><span class="p">&gt;</span></span>
 <span class="ln i6"><span class="p">&lt;/</span><span class="t">div</span><span class="p">&gt;</span></span>
 <div class="hl hl-blue hl-blue-meta">
-<span class="ln i6"><span class="p">&lt;</span><span class="t">span</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-2 dIrLFx"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"card-metadata-tag"</span><span class="p">&gt;</span></span>
+<span class="ln i6"><span class="p">&lt;</span><span class="t">span</span> <span class="a">class</span><span class="p">=</span><span class="v">"sc-1907e52a-2 dIrLFx"</span> <span class="a">data-testid</span><span class="p">=</span><span class="v">"<span class="annotate">card-metadata-tag</span>"</span><span class="p">&gt;</span></span>
 <span class="ln i7"><span class="tx">Business</span></span>
 <span class="ln i6"><span class="p">&lt;/</span><span class="t">span</span><span class="p">&gt;</span></span>
 </div>
@@ -234,11 +288,17 @@
   <label><span class="swatch" style="background:rgba(30,130,230,0.6);border:1px solid rgba(20,110,210,0.5);"></span>h2 / p / span children</label>
   <input type="range" min="0" max="100" value="18" step="1" oninput="set('--op-blue-child', this.value/100); this.nextElementSibling.textContent=this.value+'%'">
   <span class="val">18%</span>
+
+  <button id="toggle-arrows" onclick="toggleArrows()">🏹 Hide Arrows</button>
 </div>
 
 <script>
   function set(prop, val) {
     document.documentElement.style.setProperty(prop, val);
+  }
+  function toggleArrows() {
+    const hidden = document.body.classList.toggle('hide-arrows');
+    document.getElementById('toggle-arrows').textContent = hidden ? '🏹 Show Arrows' : '🏹 Hide Arrows';
   }
 </script>
 </body>
